@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  database-name:
+    image: postgres # or mysql or mariadb etc
+    ports:
+      - 5432:5432 # first is host port, second is container port
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: rentcar
+      POSTGRES_DB: databaseName
