@@ -168,12 +168,14 @@ npm install fastify # Install Fastify
 ```bash
 # Command to run postgres image database without docker-compose. This image is from bitnami (https://hub.docker.com/r/bitnami/postgresql)
 docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql
+# We don't use this command because we use docker-compose to run all images, this command is just to show how to run a single image
 ```
 
 ```json
 // Create scripts in package.json
 "scripts": {
-  "start-docker": "docker start api-solid-pg" // Create script to start postgres image database (api-solid-pg)
+  "start-docker": "docker-compose up -d", // Create script to run docker-compose in background
+  "stop-docker": "docker-compose stop" // Create script to stop docker-compose
 },
 ```
 
@@ -182,6 +184,7 @@ _Create **`docker-compose.yml`** file with all docker-compose config_
 _Create **`.dockerignore`** file with all docker-compose ignore files_
 
 ```bash
+# Commands to use docker
 docker ps # List all running containers
 docker ps -a # List all containers
 docker images # List all images
@@ -322,13 +325,11 @@ datasource db {
 # Clone este repositório
 git clone https://github.com/livioalvarenga/Template-Api-Rest-Node-Docker-Prisma.git
 # Acesse a pasta do projeto no seu terminal/cmd
-cd Template-Api-Rest-Node-Docker-Prisma
-# Instale as dependências
-npm install
-# Execute a aplicação em modo de desenvolvimento
-npm run dev
-# A aplicação será aberta na porta:3333 - acesse http://localhost:3333
-docker-compose up -d # Subir o banco de dados em modo de desenvolvimento na porta 5432
+cd Template-Api-Rest-Node-Docker-Prisma # Instale as dependências
+npm install # Execute a aplicação em modo de desenvolvimento
+npm run start-docker # Subir o banco de dados em modo de desenvolvimento na porta 5432
+npm run stop-docker # Parar o banco de dados em modo de desenvolvimento na porta 5432
+npm run dev # A aplicação será aberta na porta:3333 - acesse http://localhost:3333
 npm run build # Compilar o TypeScript em modo de produção
 npm run start # Iniciar o servidor em modo de produção
 npm run test # Executar os testes de integração

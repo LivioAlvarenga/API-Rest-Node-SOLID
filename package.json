@@ -12,7 +12,8 @@
     "generate": "npx prisma generate",
     "migrate": "npx prisma migrate dev",
     "seed": "npx prisma db seed",
-    "start-docker": "docker start api-solid-pg"
+    "start-docker": "docker-compose up -d",
+    "stop-docker": "docker-compose stop"
   },
   "keywords": [],
   "author": "Livio Alvarenga",
