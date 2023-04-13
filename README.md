@@ -165,6 +165,18 @@ npm install fastify # Install Fastify
 
 >Instalando Docker https://docs.docker.com/get-docker/
 
+```bash
+# Command to run postgres image database without docker-compose. This image is from bitnami (https://hub.docker.com/r/bitnami/postgresql)
+docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql
+```
+
+```json
+// Create scripts in package.json
+"scripts": {
+  "start-docker": "docker start api-solid-pg" // Create script to start postgres image database (api-solid-pg)
+},
+```
+
 _Create **`docker-compose.yml`** file with all docker-compose config_
 
 _Create **`.dockerignore`** file with all docker-compose ignore files_
@@ -232,7 +244,7 @@ generator erd {
 _Create **`DATABASE_URL`** in .env and .env.example file with **`Postgres`**_
 
 ```.env
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME?schema=public"
+DATABASE_URL="postgresql://docker:docker@localhost:5432/apisolid?schema=public"
 ```
 
 ```typescript
@@ -262,22 +274,6 @@ datasource db {
 }
 // https://www.prisma.io/docs/concepts/components/prisma-migrate/shadow-database
 // Exist provider that user cannot have access to create a database, to resolve this problem, you can use shadow database
-```
-
-&nbsp;
-
-_Create **`DATABASE_URL`** in .env and .env.example file with **`SqLite`**_
-
-```.env
-DATABASE_URL="file:./dev.db"
-```
-
-```typescript
-// Add datasource in prisma.schema to sqlite database
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
-}
 ```
 
 &nbsp;

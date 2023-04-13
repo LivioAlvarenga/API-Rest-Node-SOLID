@@ -11,7 +11,8 @@
     "studio": "npx prisma studio -b firefox -p 5173",
     "generate": "npx prisma generate",
     "migrate": "npx prisma migrate dev",
-    "seed": "npx prisma db seed"
+    "seed": "npx prisma db seed",
+    "start-docker": "docker start api-solid-pg"
   },
   "keywords": [],
   "author": "Livio Alvarenga",

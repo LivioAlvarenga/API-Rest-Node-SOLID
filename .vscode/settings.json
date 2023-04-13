@@ -1,7 +1,13 @@
 {
   "cSpell.words": [
+    "apisolid",
+    "bitnami",
+    "datasource",
     "fastify",
     "firefox",
+    "mariadb",
+    "postgresql",
+    "POSTGRESQL",
     "rocketseat",
     "tsup"
   ]
