@@ -1,5 +1,5 @@
 <h1 align="center"> 
-	Template API REST em Nodejs com Fastify
+	API Rest NodeJs com SOLID
 </h1>
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
@@ -16,7 +16,7 @@
 
 ## 💻 Sobre o projeto
 
-🚀 Template API REST em Nodejs com Fastify, TypeScript, Zod, PrismaJs, Docker, Eslint
+🚀 Nesse projeto será desenvolvido uma aplicação para check-ins em academias. Aqui vamos aplicar sobre alguns conceitos do SOLID, Design Patterns, Docker para iniciar o banco de dados, JWT e Refresh Token, RBAC e diversos outros conceitos.
 
 &nbsp;
 
@@ -44,7 +44,7 @@
 
 | :placard: Vitrine.Dev |                                                                                                                  |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| :sparkles: Nome       | **Template API REST em Nodejs com Fastify**                                                                |
+| :sparkles: Nome       | **API Rest NodeJs com SOLID**                                                                |
 | :label: Tecnologias   | NodeJs, TypeScript, JavaScript, .ENV, Fastify, PrismaJs, Zod, Database(MySql, PostgreSQL, SqLite), Docker, EsLint, Insomnia |                                                                 |
 
 ---
@@ -68,7 +68,6 @@ As seguintes ferramentas foram usadas na construção do projeto
   <a href= "https://www.prisma.io/"><img alt="Prisma badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/ef5ebd0021ccb0a8d244f5636b2b238ab0af09e7/files/prisma-badge.svg"></a>
   <a href= "https://zod.dev/" target="_blank" rel="noopener noreferrer"><img alt="ZOD badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/7caba2f743ee9b61f0225a22da57466ecb67097c/files/zod-badge.svg"></a>
   <a href= "https://www.docker.com/"><img alt="Docker badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/d7f6873e652db237a89583607eb70757ebaaa6d1/files/docker-badge.svg"></a>
-  <a href= "https://www.sqlite.org/index.html" target="_blank" rel="noopener noreferrer"><img alt="SQLite badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/sqLite-badge.svg"></a>
   <a href= "https://www.postgresql.org/"><img alt="Postgresql badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/380d9654d47c0618b7eb4bdf17b528d0fda04e48/files/postgresql-badge.svg"></a>
   <a href= "https://www.mysql.com/"><img alt="MySQL badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/d7f6873e652db237a89583607eb70757ebaaa6d1/files/mysql-badge.svg"></a>
   <a href= "https://insomnia.rest/" target="_blank" rel="noopener noreferrer"><img alt="Insomnia badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/insomnia-badge.svg"></a>
@@ -240,7 +239,7 @@ generator erd {
 },
 ```
 
-**`Environment variables to databases (postgres, mysql, sqlite)`**
+**`Environment variables to databases (postgres, mysql)`**
 
 &nbsp;
 
@@ -249,6 +248,7 @@ _Create **`DATABASE_URL`** in .env and .env.example file with **`Postgres`**_
 ```.env
 DATABASE_URL="postgresql://docker:docker@localhost:5432/apisolid?schema=public"
 ```
+> I used postgresql for development, but you can use mysql, mariadb, sqlite, sqlserver, mongodb, etc.
 
 ```typescript
 // Add datasource in prisma.schema to postgres database
@@ -267,6 +267,8 @@ DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
 
 SHADOW_DATABASE_URL="mysql://OTHER_USER:PASSWORD@HOST:PORT/OTHER_DATABASE_NAME"
 ```
+
+> I used mysql for production, but you can use postgresql, mariadb, sqlite, sqlserver, mongodb, etc.
 
 ```typescript
 // Add datasource in prisma.schema to mysql database
@@ -290,25 +292,20 @@ datasource db {
 
 ### RF - Requisitos Funcionais
 
-- Usuário deve poder criar novas transações;
-- Usuário deve poder listar todas as transações que ja foram criadas;
 - Bla, bla bla...;
 
 ### RN - Regras de Negócio
 
-- A transação deve ser do tipo entrada (crédito) ou saída (débito);
-- Deve ser possível identificar o usuário que criou as transações, (Obs: Não é necessário autenticação);
 - Bla, bla bla...;
 
 ### RNF - Requisitos Não Funcionais
 
-- Testes e2e de todas as rotas em Vitest;
-- Uso de sqlite em ambiente Dev e PostgreSQL em ambiente Prod;
+- Uso de PostgreSQL em ambiente Dev e MySql em ambiente Prod;
 - Uso de PrismaJs para migrations, queries e diagrama de banco de dados;
 - Uso de Fastify para rotas e middlewares;
-- Uso de ZodJs para validação de dados de entrada;
+- Uso de Zod para validação de dados de entrada;
 - Uso de SupertestJs para testes de integração;
-- Uso de TsupJs para compilar o TypeScript em modo de produção;
+- Uso de Tsup para compilar o TypeScript em modo de produção;
 - Uso de Tsx para compilar o TypeScript em modo de desenvolvimento;
 - Uso de Eslint para padronização de código;
 - Uso de Prettier para padronização de código;
@@ -369,12 +366,12 @@ Olá, eu sou Livio Alvarenga, Engenheiro de Produção | Dev Back-end e Front-en
 &nbsp;
 
 <p align="center">
-  <a href= "https://www.livioalvarenga.com/"><img alt="portifólio livio alvarenga" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/3109a24e71f07dbad193ae0ddbc43b69b39c7adf/files/badgePortifolioLivio.svg"></a>
-  <a href= "https://www.linkedin.com/in/livio-alvarenga-planejamento-mrp-engenheiro-produ%C3%A7%C3%A3o-materiais-vba-powerbi/"><img alt="perfil linkedin livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=0A66C2&logo=LinkedIn&label=LinkedIn&message=Livio Alvarenga&color=0A66C2"></a>
+  <a href= "https://www.livioalvarenga.com/"><img alt="portfólio livio alvarenga" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/3109a24e71f07dbad193ae0ddbc43b69b39c7adf/files/badgePortifolioLivio.svg"></a>
+  <a href= "https://www.linkedin.com/in/livio-alvarenga-planejamento-mrp-engenheiro-produ%C3%A7%C3%A3o-materiais-vba-powerbi/"><img alt="perfil LinkedIn livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=0A66C2&logo=LinkedIn&label=LinkedIn&message=Livio Alvarenga&color=0A66C2"></a>
   <a href= "https://twitter.com/AlvarengaLivio"><img alt="perfil twitter livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=1DA1F2&logo=Twitter&label=Twitter&message=@AlvarengaLivio&color=1DA1F2"></a>
-  <a href= "https://www.instagram.com/livio_alvarenga/"><img alt="perfil instagram livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=E4405F&logo=Instagram&label=Instagram&message=@livio_alvarenga&color=E4405F"></a>
-  <a href= "https://www.facebook.com/profile.php?id=100083957091312"><img alt="perfil facebook livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=1877F2&logo=Facebook&label=Facebook&message=Livio Alvarenga&color=1877F2"></a>
-  <a href= "https://www.youtube.com/channel/UCrZgsh8IWyyNrRZ7cjrPbcg"><img alt="perfil youtube livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=FF0000&logo=YouTube&label=Youtube&message=Livio Alvarenga&color=FF0000"></a>
+  <a href= "https://www.instagram.com/livio_alvarenga/"><img alt="perfil Instagram livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=E4405F&logo=Instagram&label=Instagram&message=@livio_alvarenga&color=E4405F"></a>
+  <a href= "https://www.facebook.com/profile.php?id=100083957091312"><img alt="perfil Facebook livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=1877F2&logo=Facebook&label=Facebook&message=Livio Alvarenga&color=1877F2"></a>
+  <a href= "https://www.youtube.com/channel/UCrZgsh8IWyyNrRZ7cjrPbcg"><img alt="perfil YouTube livio alvarenga" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=FF0000&logo=YouTube&label=Youtube&message=Livio Alvarenga&color=FF0000"></a>
 </p>
 <p align="center">
  <a href= "https://cursos.alura.com.br/vitrinedev/livioalvarenga"><img alt="perfil vitrinedev livio alvarenga" align="center" height="30" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/e0f5b5a82976af114d957c20f0c78b4d304a68a0/files/vitrinedev.svg"></a>

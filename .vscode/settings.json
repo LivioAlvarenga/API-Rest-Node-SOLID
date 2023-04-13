@@ -5,10 +5,14 @@
     "datasource",
     "fastify",
     "firefox",
+    "livio",
     "mariadb",
+    "npmrc",
     "postgresql",
     "POSTGRESQL",
     "rocketseat",
+    "sqlite",
+    "sqlserver",
     "tsup"
   ]
 }
