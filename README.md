@@ -163,6 +163,8 @@ npm install fastify # Install Fastify
 
 ### **Docker** architecture
 
+>Instalando Docker https://docs.docker.com/get-docker/
+
 _Create **`docker-compose.yml`** file with all docker-compose config_
 
 _Create **`.dockerignore`** file with all docker-compose ignore files_
