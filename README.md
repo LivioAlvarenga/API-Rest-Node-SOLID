@@ -283,6 +283,12 @@ datasource db {
 
 &nbsp;
 
+### **Others** libraries
+
+```bash
+npm install bcryptjs # Install bcryptjs to encrypt password
+```
+
 ---
 
 &nbsp;
