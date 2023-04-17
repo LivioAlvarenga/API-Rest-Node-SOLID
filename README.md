@@ -292,11 +292,25 @@ datasource db {
 
 ### RF - Requisitos Funcionais
 
-- Bla, bla bla...;
+- Deve ser possível se cadastrar na aplicação;
+- Deve ser possível se autenticar na aplicação;
+- Deve ser possível obter o perfil do usuário logado;
+- Deve ser possível obter o número de check-ins do usuário logado;
+- Deve ser possível o usuário obter seu histórico de check-ins;
+- Deve ser possível o usuário buscar academias próximas a ele;
+- Deve ser possível o usuário buscar academias por nome;
+- Deve ser possível o usuário fazer check-in em uma academia;
+- Deve ser possível validar o check-in do usuário em uma academia;
+- Deve ser possível cadastrar uma academia;
 
 ### RN - Regras de Negócio
 
-- Bla, bla bla...;
+- O usuário não pode se cadastrar com um e-mail já existente;
+- O usuário não pode fazer dois check-ins no mesmo dia;
+- O usuário não pode fazer check-in se não estiver perto (100m) da academia;
+- O check-in só pode ser validado até 20 minutos após criação;
+- O check-in só pode ser validado por usuários administradores;
+- A academia só pode ser cadastrada por usuários administradores;
 
 ### RNF - Requisitos Não Funcionais
 
