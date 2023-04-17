@@ -314,6 +314,9 @@ datasource db {
 
 ### RNF - Requisitos Não Funcionais
 
+- A senha do usuário deve ser armazenada com hash;
+- Todas as listas de dados devem ser paginadas com 20 itens por página;
+- O usuário deve ser identificado pelo token JWT;
 - Uso de PostgreSQL em ambiente Dev e MySql em ambiente Prod;
 - Uso de PrismaJs para migrations, queries e diagrama de banco de dados;
 - Uso de Fastify para rotas e middlewares;

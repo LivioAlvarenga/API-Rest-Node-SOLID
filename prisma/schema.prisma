@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,9 +12,30 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid())
-  name  String
-  email String @unique
+  id            String @id @default(uuid())
+  name          String
+  email         String @unique
+  password_hash String
+  created_at    DateTime @default(now())
 
   @@map("users")
+}
+
+model CheckIn {
+  id           String    @id @default(uuid())
+  createdAt    DateTime  @default(now())
+  validated_at DateTime?
+
+  @@map("check_ins")
+}
+
+model Gym {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+  phone       String?
+  latitude    Decimal
+  longitude   Decimal
+
+  @@map("gyms")
 }
