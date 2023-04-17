@@ -289,6 +289,8 @@ datasource db {
 ```bash
 npm install vitest # Install Vitest
 npm install -D vite-tsconfig-paths # To vite understand tsconfig paths
+npm install -D @vitest/coverage-c8 # Install coverage vitest
+npm install -D @vitest/ui # Install vitest ui
 ```
 
 _Create **`vitest.config.ts`** file with all vitest config_
@@ -308,6 +310,8 @@ export default defineConfig({
 "scripts": {
   "test": "vitest run", // Run all tests without watch
   "test:watch": "vitest", // Run all tests with watch
+  "test:coverage": "vitest run --coverage", // Run all tests with coverage
+  "test:ui": "vitest --ui", // Run all tests with ui
 },
 ```
 
