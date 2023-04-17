@@ -287,6 +287,7 @@ datasource db {
 
 ```bash
 npm install bcryptjs # Install bcryptjs to encrypt password
+npm install -D @types/bcryptjs # Install typescript types for bcryptjs
 ```
 
 ---
