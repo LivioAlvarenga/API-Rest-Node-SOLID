@@ -70,6 +70,7 @@ As seguintes ferramentas foram usadas na construção do projeto
   <a href= "https://www.docker.com/"><img alt="Docker badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/d7f6873e652db237a89583607eb70757ebaaa6d1/files/docker-badge.svg"></a>
   <a href= "https://www.postgresql.org/"><img alt="Postgresql badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/380d9654d47c0618b7eb4bdf17b528d0fda04e48/files/postgresql-badge.svg"></a>
   <a href= "https://www.mysql.com/"><img alt="MySQL badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/d7f6873e652db237a89583607eb70757ebaaa6d1/files/mysql-badge.svg"></a>
+  <a href= "https://vitest.dev/"><img alt="Vitest Badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/28993b470420f2c44db532b4e6e662e60a186954/files/vitest-badge.svg"></a>
   <a href= "https://insomnia.rest/" target="_blank" rel="noopener noreferrer"><img alt="Insomnia badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/insomnia-badge.svg"></a>
   <a href= "https://swagger.io/"><img alt="swagger badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/746a4dde7970d133fb9d6a1262f40c4f4d6e6573/files/swagger-badge.svg"></a>
   <a href= "https://code.visualstudio.com/download" target="_blank" rel="noopener noreferrer"><img alt="vscode download" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/vsCode-badge.svg"></a>
@@ -279,6 +280,35 @@ datasource db {
 }
 // https://www.prisma.io/docs/concepts/components/prisma-migrate/shadow-database
 // Exist provider that user cannot have access to create a database, to resolve this problem, you can use shadow database
+```
+
+&nbsp;
+
+### **Vitest** architecture
+
+```bash
+npm install vitest # Install Vitest
+npm install -D vite-tsconfig-paths # To vite understand tsconfig paths
+```
+
+_Create **`vitest.config.ts`** file with all vitest config_
+
+```typescript
+import tsconfigPaths from 'vite-tsconfig-paths'
+import { defineConfig } from 'vitest/config'
+
+export default defineConfig({
+  plugins: [tsconfigPaths()],
+})
+// now vitest can understand tsconfig paths
+```
+
+```json
+// Create scripts in package.json
+"scripts": {
+  "test": "vitest run", // Run all tests without watch
+  "test:watch": "vitest", // Run all tests with watch
+},
 ```
 
 &nbsp;
