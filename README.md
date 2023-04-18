@@ -287,7 +287,7 @@ datasource db {
 ### **Vitest** architecture
 
 ```bash
-npm install vitest # Install Vitest
+npm install -D vitest # Install Vitest
 npm install -D vite-tsconfig-paths # To vite understand tsconfig paths
 npm install -D @vitest/coverage-c8 # Install coverage vitest
 npm install -D @vitest/ui # Install vitest ui
@@ -374,24 +374,44 @@ npm install -D @types/bcryptjs # Install typescript types for bcryptjs
 
 &nbsp;
 
-### 🧭 Rodando a aplicação web (Modo desenvolvimento)
+### 🧭 Rodando a aplicação (Modo desenvolvimento)
 
 ```bash
-# Clone este repositório
-git clone https://github.com/livioalvarenga/Template-Api-Rest-Node-Docker-Prisma.git
-# Acesse a pasta do projeto no seu terminal/cmd
-cd Template-Api-Rest-Node-Docker-Prisma # Instale as dependências
-npm install # Execute a aplicação em modo de desenvolvimento
+git clone https://github.com/livioalvarenga/Template-Api-Rest-Node-Docker-Prisma.git # Clone este repositório
+cd Template-Api-Rest-Node-Docker-Prisma # Acesse a pasta do projeto no seu terminal/cmd
+npm install # Instale as dependências
 npm run start-docker # Subir o banco de dados em modo de desenvolvimento na porta 5432
-npm run stop-docker # Parar o banco de dados em modo de desenvolvimento na porta 5432
-npm run dev # A aplicação será aberta na porta:3333 - acesse http://localhost:3333
+npm run dev # Execute a aplicação em modo de desenvolvimento, a aplicação será aberta na porta:3333 - acesse http://localhost:3333
+
+npm run stop-docker # Parar o banco de dados em modo de desenvolvimento
+
+# Ou
+
+npm run lets-code # Sobe o banco de dados em modo de desenvolvimento e executa a aplicação em modo de desenvolvimento
+```	
+
+### 🧭 Rodando a aplicação (Modo produção)
+
+```bash
 npm run build # Compilar o TypeScript em modo de produção
 npm run start # Iniciar o servidor em modo de produção
-npm run test # Executar os testes de integração
+```
+
+### 🧭 Prisma
+```bash	
 npm run studio # Iniciar o Prisma Studio para visualizar o banco de dados
 npm run migrate # Criar migrations do banco de dados
 npm run seed # Popular o banco de dados com dados de desenvolvimento
 npm run generate # Gerar diagrama do banco de dados
+```
+
+### 🧭 Testes
+
+```bash
+npm run test # Executar os testes de integração
+npm run test:watch # Executar os testes de integração com watch
+npm run test:coverage # Executar os testes de integração com coverage
+npm run test:ui # Executar os testes de integração com ui
 ```
 
 ### Testando requests com Insomnia
