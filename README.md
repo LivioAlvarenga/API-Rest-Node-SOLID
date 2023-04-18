@@ -45,7 +45,7 @@
 | :placard: Vitrine.Dev |                                                                                                                  |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | :sparkles: Nome       | **API Rest NodeJs com SOLID**                                                                |
-| :label: Tecnologias   | NodeJs, TypeScript, JavaScript, .ENV, Fastify, PrismaJs, Zod, Database(MySql, PostgreSQL, SqLite), Docker, EsLint, Insomnia |                                                                 |
+| :label: Tecnologias   | NodeJs, TypeScript, JavaScript, .ENV, Fastify, PrismaJs, Zod, Database(MySql, PostgreSQL), Docker, Vitest, EsLint, Insomnia |                                                                 |
 
 ---
 
