@@ -16,7 +16,8 @@
     "migrate": "npx prisma migrate dev",
     "seed": "npx prisma db seed",
     "start-docker": "docker-compose up -d",
-    "stop-docker": "docker-compose stop"
+    "stop-docker": "docker-compose stop",
+    "lets-code": "npm run start-docker && npm run dev"
   },
   "keywords": [],
   "author": "Livio Alvarenga",
