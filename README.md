@@ -68,7 +68,7 @@ As seguintes ferramentas foram usadas na construção do projeto
   <a href= "https://www.prisma.io/"><img alt="Prisma badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/ef5ebd0021ccb0a8d244f5636b2b238ab0af09e7/files/prisma-badge.svg"></a>
   <a href= "https://zod.dev/" target="_blank" rel="noopener noreferrer"><img alt="ZOD badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/7caba2f743ee9b61f0225a22da57466ecb67097c/files/zod-badge.svg"></a>
   <a href= "https://www.docker.com/"><img alt="Docker badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/d7f6873e652db237a89583607eb70757ebaaa6d1/files/docker-badge.svg"></a>
-  <a href= "https://www.postgresql.org/"><img alt="Postgresql badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/380d9654d47c0618b7eb4bdf17b528d0fda04e48/files/postgresql-badge.svg"></a>
+  <a href= "https://www.postgresql.org/"><img alt="Postgresql badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/216dbfe908644a89abea4ccf86a49fa93c5a441f/files/postgresql-badge.svg"></a>
   <a href= "https://www.mysql.com/"><img alt="MySQL badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/d7f6873e652db237a89583607eb70757ebaaa6d1/files/mysql-badge.svg"></a>
   <a href= "https://vitest.dev/"><img alt="Vitest Badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/28993b470420f2c44db532b4e6e662e60a186954/files/vitest-badge.svg"></a>
   <a href= "https://insomnia.rest/" target="_blank" rel="noopener noreferrer"><img alt="Insomnia badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/insomnia-badge.svg"></a>
