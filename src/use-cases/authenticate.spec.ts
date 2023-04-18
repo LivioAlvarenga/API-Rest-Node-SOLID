@@ -1,15 +1,20 @@
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { hash } from 'bcryptjs'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { AuthenticateUseCase } from './authenticate'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
-describe('Authenticate Use Case', () => {
-  it('should be able to authenticate', async () => {
-    // Create a fake repository
-    const UsersRepository = new InMemoryUsersRepository()
-    const sut = new AuthenticateUseCase(UsersRepository) // System under test(sut), the main variable of the test
+let UsersRepository: InMemoryUsersRepository
+let sut: AuthenticateUseCase // System under test(sut), the main variable of the test
 
+describe('Authenticate Use Case', () => {
+  beforeEach(() => {
+    // Create a fake repository
+    UsersRepository = new InMemoryUsersRepository()
+    sut = new AuthenticateUseCase(UsersRepository)
+  })
+
+  it('should be able to authenticate', async () => {
     // Create a fake user
     await UsersRepository.create({
       name: 'John Doe',
@@ -26,10 +31,6 @@ describe('Authenticate Use Case', () => {
   })
 
   it('should not be able to authenticate with wrong email', async () => {
-    // Create a fake repository
-    const UsersRepository = new InMemoryUsersRepository()
-    const sut = new AuthenticateUseCase(UsersRepository) // System under test(sut), the main variable of the test
-
     // I am not creating a fake user here to test the wrong email
     expect(() =>
       sut.execute({
@@ -40,10 +41,6 @@ describe('Authenticate Use Case', () => {
   })
 
   it('should not be able to authenticate with wrong password', async () => {
-    // Create a fake repository
-    const UsersRepository = new InMemoryUsersRepository()
-    const sut = new AuthenticateUseCase(UsersRepository) // System under test(sut), the main variable of the test
-
     // Create a fake user
     await UsersRepository.create({
       name: 'John Doe',
