@@ -15,14 +15,14 @@ describe('Check-in Use Case', () => {
     gymsRepository = new InMemoryGymsRepository()
     sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
-    // Create a fake gym
+    // Create a fake gym (latitude and longitude example is Praça da Liberdade, Belo Horizonte)
     gymsRepository.items.push({
-      id: 'gym-id',
+      id: 'gym-01',
       title: 'Gym Title',
       description: 'Gym Description',
       phone: 'Gym Phone',
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
+      latitude: new Decimal(-19.9328401),
+      longitude: new Decimal(-43.9411575),
     })
 
     // In tests is complicated to work with time, so we must use fake timers
@@ -35,10 +35,10 @@ describe('Check-in Use Case', () => {
 
   it('should be able to check in', async () => {
     const { checkIn } = await sut.execute({
-      gymId: 'gym-id',
+      gymId: 'gym-01',
       userId: 'user-id',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -19.9328401,
+      userLongitude: -43.9411575,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
@@ -49,18 +49,18 @@ describe('Check-in Use Case', () => {
     // Now all checks will be in the same day
 
     await sut.execute({
-      gymId: 'gym-id',
+      gymId: 'gym-01',
       userId: 'user-id',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -19.9328401,
+      userLongitude: -43.9411575,
     })
 
     expect(() =>
       sut.execute({
-        gymId: 'gym-id',
+        gymId: 'gym-01',
         userId: 'user-id',
-        userLatitude: 0,
-        userLongitude: 0,
+        userLatitude: -19.9328401,
+        userLongitude: -43.9411575,
       }),
     ).rejects.toBeInstanceOf(Error)
   })
@@ -69,21 +69,42 @@ describe('Check-in Use Case', () => {
     vi.setSystemTime(new Date(2023, 3, 19, 8, 0, 0))
 
     await sut.execute({
-      gymId: 'gym-id',
+      gymId: 'gym-01',
       userId: 'user-id',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -19.9328401,
+      userLongitude: -43.9411575,
     })
 
     vi.setSystemTime(new Date(2023, 3, 20, 8, 0, 0))
 
     const { checkIn } = await sut.execute({
-      gymId: 'gym-id',
+      gymId: 'gym-01',
       userId: 'user-id',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -19.9328401,
+      userLongitude: -43.9411575,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
+  })
+
+  it('should not be able to check in at gyms that are more than 100 meters away', async () => {
+    // Gym-02 is distant > 100 meters from Praça da Liberdade
+    gymsRepository.items.push({
+      id: 'gym-02',
+      title: 'Gym-02 Title',
+      description: 'Gym-02 Description',
+      phone: 'Gym-02 Phone',
+      latitude: new Decimal(-20.3912427), // latitude of the Ouro Preto, Minas Gerais
+      longitude: new Decimal(-43.540657), // longitude of the Ouro Preto, Minas Gerais
+    })
+
+    await expect(() =>
+      sut.execute({
+        gymId: 'gym-02',
+        userId: 'user-id',
+        userLatitude: -19.9328401, // latitude of Praça da Liberdade
+        userLongitude: -43.9411575, // longitude of Praça da Liberdade
+      }),
+    ).rejects.toBeInstanceOf(Error)
   })
 })
