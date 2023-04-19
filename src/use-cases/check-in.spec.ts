@@ -4,7 +4,11 @@ import { Decimal } from '@prisma/client/runtime/library'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { CheckInUseCase } from './check-in'
 import { MaxDistanceError } from './errors/max-distance-error'
+<<<<<<< HEAD
 import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
+=======
+import { MaxNumberOfCheckInsError } from './errors/max-number-of-chec-ins-error'
+>>>>>>> 458ca28569d8d63dbde623224e92af0849e49ef7
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
