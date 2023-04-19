@@ -3,6 +3,7 @@
     "apisolid",
     "bitnami",
     "datasource",
+    "dayjs",
     "fastify",
     "firefox",
     "livio",

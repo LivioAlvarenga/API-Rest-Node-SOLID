@@ -322,6 +322,7 @@ export default defineConfig({
 ```bash
 npm install bcryptjs # Install bcryptjs to encrypt password
 npm install -D @types/bcryptjs # Install typescript types for bcryptjs
+npm install dayjs # Install dayjs to manipulate date
 ```
 
 ---
