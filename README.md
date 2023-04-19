@@ -339,7 +339,7 @@ npm install dayjs # Install dayjs to manipulate date
 - Deve ser possível obter o perfil do usuário logado;
 - Deve ser possível obter o número de check-ins do usuário logado;
 - Deve ser possível o usuário obter seu histórico de check-ins;
-- Deve ser possível o usuário buscar academias próximas a ele;
+- Deve ser possível o usuário buscar academias próximas a ele (até 10km);
 - Deve ser possível o usuário buscar academias por nome;
 - Deve ser possível o usuário fazer check-in em uma academia;
 - Deve ser possível validar o check-in do usuário em uma academia;
