@@ -3,26 +3,28 @@ import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-
 import { Decimal } from '@prisma/client/runtime/library'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { CheckInUseCase } from './check-in'
+import { MaxDistanceError } from './errors/max-distance-error'
+import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
 let sut: CheckInUseCase // System under test(sut), the main variable of the test
 
 describe('Check-in Use Case', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     // Create a fake repository
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
     sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
     // Create a fake gym (latitude and longitude example is Praça da Liberdade, Belo Horizonte)
-    gymsRepository.items.push({
+    await gymsRepository.create({
       id: 'gym-01',
-      title: 'Gym Title',
-      description: 'Gym Description',
-      phone: 'Gym Phone',
-      latitude: new Decimal(-19.9328401),
-      longitude: new Decimal(-43.9411575),
+      title: 'Gym-01 Title',
+      description: '',
+      phone: '',
+      latitude: -19.9328401, // latitude of the Ouro Preto, Minas Gerais
+      longitude: -43.9411575, // longitude of the Ouro Preto, Minas Gerais
     })
 
     // In tests is complicated to work with time, so we must use fake timers
@@ -62,7 +64,7 @@ describe('Check-in Use Case', () => {
         userLatitude: -19.9328401,
         userLongitude: -43.9411575,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
 
   it('should be able to check in twice but in different days', async () => {
@@ -105,6 +107,6 @@ describe('Check-in Use Case', () => {
         userLatitude: -19.9328401, // latitude of Praça da Liberdade
         userLongitude: -43.9411575, // longitude of Praça da Liberdade
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxDistanceError)
   })
 })
