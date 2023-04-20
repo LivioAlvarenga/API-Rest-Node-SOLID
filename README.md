@@ -324,7 +324,7 @@ npm install -D @vitest/coverage-c8 # Install coverage vitest
 npm install -D @vitest/ui # Install vitest ui
 ```
 
-_Create **`vitest.config.ts`** file with all vitest config_
+_Create **`vite.config.ts`** file with all vitest config_
 
 ```typescript
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -343,6 +343,35 @@ export default defineConfig({
   "test:watch": "vitest", // Run all tests with watch
   "test:coverage": "vitest run --coverage", // Run all tests with coverage
   "test:ui": "vitest --ui", // Run all tests with ui
+},
+```
+
+_Create **`vitest-environment-prisma`** to test environment with prisma_
+
+```bash	
+cd prisma/vitest-environment-prisma # Enter in vitest-environment-prisma folder
+npm init -y # Create package.json
+npm link # Link vitest-environment-prisma to node_modules
+cd ../../ # Return to root folder
+npm link vitest-environment-prisma # Link vitest-environment-prisma to node_modules
+```
+
+Edit **`package.json`** file like this
+```json
+{
+  "name": "vitest-environment-prisma",
+  "main": "prisma-test-environment.ts"
+}
+```
+
+_Create **`prisma-test-environment.ts`** in vitest-environment-prisma folder_
+
+_Edit **`vite.config.ts`** file with all vitest config_
+
+```typescript
+// Any test inside src/http/controllers will run in environment with prisma/vitest-environment-prisma
+test: {
+  environmentMatchGlobs: [['src/http/controllers/**', 'prisma']],
 },
 ```
 
