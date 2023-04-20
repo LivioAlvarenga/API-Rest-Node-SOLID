@@ -45,7 +45,7 @@
 | :placard: Vitrine.Dev |                                                                                                                  |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | :sparkles: Nome       | **API Rest NodeJs com SOLID**                                                                |
-| :label: Tecnologias   | NodeJs, TypeScript, JavaScript, .ENV, Fastify, PrismaJs, Zod, Database(MySql, PostgreSQL), Docker, Vitest, EsLint, Insomnia |                                                                 |
+| :label: Tecnologias   | NodeJs, TypeScript, JavaScript, .ENV, Fastify, PrismaJs, Zod, Database(MySql, PostgreSQL), Docker, Vitest, EsLint, Insomnia e JSON Web Token. |                                                                 |
 
 ---
 
@@ -73,7 +73,7 @@ As seguintes ferramentas foram usadas na construção do projeto
   <a href= "https://vitest.dev/"><img alt="Vitest Badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/28993b470420f2c44db532b4e6e662e60a186954/files/vitest-badge.svg"></a>
   <a href= "https://insomnia.rest/" target="_blank" rel="noopener noreferrer"><img alt="Insomnia badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/insomnia-badge.svg"></a>
   <a href= "https://swagger.io/"><img alt="swagger badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/e8e5c3d2752ae17cbffa11142d8513fe1f405873/files/swagger-badge.svg"></a>
-  <a href= "https://jwt.io/"><img alt="JSON Web Tokens Badge" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=000000&logo=jsonwebtokens&label=Login Credentials&message=JSON Web Tokens&color=000000"></a>
+  <a href= "https://jwt.io/"><img alt="JSON Web Tokens Badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/af3b694b2d536d66113468df616d3f165d881eb7/files/jwt-badge.svg"></a>
   <a href= "https://code.visualstudio.com/download" target="_blank" rel="noopener noreferrer"><img alt="vscode download" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/vsCode-badge.svg"></a>
   <a href= "https://github.com/prettier/prettier" target="_blank" rel="noopener noreferrer"><img alt="code formatter prettier" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/prettier-badge.svg"></a>
   <a href= "https://eslint.org/" target="_blank" rel="noopener noreferrer"><img alt="code standardization eslint" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/59575ed19b13121cd113cfc66a71f18dea210c79/files/eslint-badge.svg"></a>
