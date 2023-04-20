@@ -339,8 +339,12 @@ export default defineConfig({
 ```json
 // Create scripts in package.json
 "scripts": {
-  "test": "vitest run", // Run all tests without watch
-  "test:watch": "vitest", // Run all tests with watch
+  "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma", // Create vitest-environment-prisma in node_modules
+  "test:install-prisma-environment": "npm link vitest-environment-prisma", // Install vitest-environment-prisma in node_modules
+  "test": "vitest run --dir src/use-cases", // Run all tests without watch
+  "test:watch": "vitest --dir src/use-cases", // Run all tests with watch
+  "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment", // Run before test:e2e, run-s is to run scripts in sequence (npm install -D npm-run-all) 
+  "test:e2e": "vitest run --dir src/http", // Run all tests without watch in specific folder
   "test:coverage": "vitest run --coverage", // Run all tests with coverage
   "test:ui": "vitest --ui", // Run all tests with ui
 },
@@ -380,6 +384,7 @@ test: {
 ### **Others** libraries
 
 ```bash
+npm install -D npm-run-all # Install npm-run-all to run multiple scripts in parallel or sequential
 npm install bcryptjs # Install bcryptjs to encrypt password
 npm install -D @types/bcryptjs # Install typescript types for bcryptjs
 npm install dayjs # Install dayjs to manipulate date
