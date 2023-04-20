@@ -322,6 +322,8 @@ npm install -D vitest # Install Vitest
 npm install -D vite-tsconfig-paths # To vite understand tsconfig paths
 npm install -D @vitest/coverage-c8 # Install coverage vitest
 npm install -D @vitest/ui # Install vitest ui
+npm install -D supertest # Install supertest to test http requests
+npm install -D @types/supertest # Install types supertest
 ```
 
 _Create **`vite.config.ts`** file with all vitest config_
@@ -345,6 +347,7 @@ export default defineConfig({
   "test:watch": "vitest --dir src/use-cases", // Run all tests with watch
   "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment", // Run before test:e2e, run-s is to run scripts in sequence (npm install -D npm-run-all) 
   "test:e2e": "vitest run --dir src/http", // Run all tests without watch in specific folder
+  "test:e2e:watch": "vitest --dir src/http", // Run all tests with watch in specific folder
   "test:coverage": "vitest run --coverage", // Run all tests with coverage
   "test:ui": "vitest --ui", // Run all tests with ui
 },
