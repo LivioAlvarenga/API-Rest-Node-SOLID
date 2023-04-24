@@ -159,6 +159,7 @@ npx tsc --init # Create tsconfig.json
 ```bash
 npm install fastify # Install Fastify
 npm install @fastify/jwt # Install @fastify/jwt to use JWT in Fastify
+npm install @fastify/cookie # Install @fastify/cookie to use cookie in Fastify
 ```
 
 _Create **`fastify-jwt.d.ts`** file in @types folder with all types of JWT in Fastify_
