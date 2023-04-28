@@ -1,0 +1,833 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Rest NodeJs com SOLID | API Rest NodeJs with SOLID",
+    "description": "Nesse projeto será desenvolvido uma aplicação para check-ins em academias. Aqui vamos aplicar sobre alguns conceitos do `SOLID, Design Patterns, Docker para iniciar o banco de dados, JWT e Refresh Token, RBAC` e diversos outros conceitos.\n\n\n_In this project, an application for check-ins in gyms will be developed. We will apply some `SOLID principles, Design Patterns, Docker to start the database, JWT and Refresh Token, RBAC` and several other concepts._",
+    "termsOfService": "https://github.com/LivioAlvarenga/API-Rest-Node-SOLID/blob/master/README.md",
+    "contact": {
+      "name": "support",
+      "email": "contato@livioalvarenga.com",
+      "url": "https://livioalvarenga.com/"
+    },
+    "license": {
+      "name": "License: MIT",
+      "url": "https://github.com/LivioAlvarenga/API-Rest-Node-SOLID/blob/master/LICENSE"
+    },
+    "version": "0.0.1"
+  },
+  "externalDocs": {
+    "description": "Repository of project",
+    "url": "https://github.com/LivioAlvarenga/API-Rest-Node-SOLID"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333",
+      "description": "Developer server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Documentation",
+      "description": "Routes about documentation"
+    },
+    {
+      "name": "Users",
+      "description": "Routes about users"
+    },
+    {
+      "name": "Gyms",
+      "description": "Routes about gyms"
+    },
+    {
+      "name": "Check-ins",
+      "description": "Routes about check-ins"
+    }
+  ],
+  "paths": {
+    "/docs": {
+      "get": {
+        "tags": [
+          "Documentation"
+        ],
+        "summary": "OpenAPI documentation",
+        "description": "Serve the OpenAPI documentation in Swagger UI.",
+        "responses": {
+          "200": {
+            "description": "API documentation fetched successfully.",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user",
+        "description": "Create a new user",
+        "requestBody": {
+          "description": "Create a new user in database",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully."
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "409": {
+            "description": "E-mail already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a authentication session",
+        "description": "Create a authentication session",
+        "requestBody": {
+          "description": "Create a authentication session",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "uniqueItems": true,
+                    "minLength": 5,
+                    "maxLength": 255,
+                    "pattern": "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/g",
+                    "description": "The user email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "minLength": 8,
+                    "maxLength": 128,
+                    "pattern": "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\|,.<>\\/?]).+$/g",
+                    "description": "The user password, will be encrypted"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "example": {
+                  "email": "livioalvarenga@mail.com",
+                  "password": "Senha@!123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful authentication.",
+            "headers": {
+              "Set-Cookie": {
+                "description": "refreshToken cookie",
+                "schema": {
+                  "type": "string",
+                  "example": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiTUVNQkVSIiwic3ViIjoiYTA5NDhjMmMtYzQ1My00YzNlLWExNTUtNzVjNjJlNzA1YmExIiwiaWF0IjoxNjgyNjE5NzM4LCJleHAiOjE2ODMyMjQ1Mzh9.1sBGO89KZ7MJLF8qT5zPoK0GK_lcvR9LAbMokyHQt5o; Path=/; HttpOnly; Secure; SameSite=Strict"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "JWT access token",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE2MTYyMzkwMjJ9.6rEJp1jglRWiYHOJFO_x9l2zjKl7TcI1GjT_nSxQkzE"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid credentials | Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/token/refresh": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Refresh a authentication session",
+        "description": "Refresh the JWT token using a refreshToken cookie",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful authentication.",
+            "headers": {
+              "Set-Cookie": {
+                "description": "refreshToken cookie",
+                "schema": {
+                  "type": "string",
+                  "example": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiTUVNQkVSIiwic3ViIjoiYTA5NDhjMmMtYzQ1My00YzNlLWExNTUtNzVjNjJlNzA1YmExIiwiaWF0IjoxNjgyNjE5NzM4LCJleHAiOjE2ODMyMjQ1Mzh9.1sBGO89KZ7MJLF8qT5zPoK0GK_lcvR9LAbMokyHQt5o; Path=/; HttpOnly; Secure; SameSite=Strict"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "JWT access token",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE2MTYyMzkwMjJ9.6rEJp1jglRWiYHOJFO_x9l2zjKl7TcI1GjT_nSxQkzE"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get the user profile",
+        "description": "Get the user profile",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful get the user profile.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "User ID",
+                          "example": "b2b221b1-7824-4c43-b7c7-869ddc3083ee"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "User name",
+                          "example": "Livio Alvarenga"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "User email",
+                          "example": "l5ss@gmail.com"
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "User role",
+                          "enum": [
+                            "ADMIN",
+                            "MEMBER"
+                          ],
+                          "example": "ADMIN"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "User creation timestamp",
+                          "example": "2023-04-27T12:34:56.789Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/gyms": {
+      "post": {
+        "tags": [
+          "Gyms"
+        ],
+        "summary": "Create a new gym",
+        "description": "Create a new gym. Note: Only users with the 'ADMIN' role can create a gym.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Title of the gym",
+                    "example": "Gym ABC"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the gym",
+                    "nullable": true,
+                    "example": "A great gym for all your fitness needs"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Phone number of the gym",
+                    "nullable": true,
+                    "example": "+1 (555) 123-4567"
+                  },
+                  "latitude": {
+                    "type": "number",
+                    "description": "Latitude of the gym's location",
+                    "example": 40.712776
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "description": "Longitude of the gym's location",
+                    "example": -74.005974
+                  }
+                },
+                "required": [
+                  "title",
+                  "latitude",
+                  "longitude"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Gym created successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/gyms/search": {
+      "get": {
+        "tags": [
+          "Gyms"
+        ],
+        "summary": "Search gyms",
+        "description": "Search for gyms based on a query string and optional pagination.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "description": "The search query string",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "The page number for pagination",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of gyms that match the search query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "gyms": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/gym"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/gyms/nearby": {
+      "get": {
+        "tags": [
+          "Gyms"
+        ],
+        "summary": "Fetch nearby gyms",
+        "description": "Retrieve a list of nearby gyms based on the user's latitude and longitude.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "query",
+            "description": "User's latitude coordinate.",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "example": 40.712776
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "description": "User's longitude coordinate.",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "example": -74.005974
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of nearby gyms.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "gyms": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/gym"
+                      }
+                    }
+                  },
+                  "required": [
+                    "gyms"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/gyms/{gymId}/check-ins": {
+      "post": {
+        "tags": [
+          "Check-ins"
+        ],
+        "summary": "Create check-in for a gym",
+        "description": "Create a check-in for a specific gym based on the provided gym ID, user's latitude and longitude.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "gymId",
+            "in": "path",
+            "description": "Gym ID for the check-in.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "f32ab72d-c0cf-4e5c-9815-2d16b794fa9e"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "User's latitude and longitude for the check-in.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 40.712776
+                  },
+                  "longitude": {
+                    "type": "number",
+                    "format": "float",
+                    "example": -74.005974
+                  }
+                },
+                "required": [
+                  "latitude",
+                  "longitude"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Check-in created successfully."
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden. The user is too far from the gym to check in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found. Gym with the specified ID not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict. The user has already checked in on the same day.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/check-ins/history": {
+      "get": {
+        "tags": [
+          "Check-ins"
+        ],
+        "summary": "Fetch user check-ins history",
+        "description": "Fetch the history of check-ins for the authenticated user.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Check-ins history fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "checkIns": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/checkIn"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/check-ins/metrics": {
+      "get": {
+        "tags": [
+          "Check-ins"
+        ],
+        "summary": "Fetch user check-ins metrics",
+        "description": "Fetch check-ins metrics for the authenticated user.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Check-ins metrics fetched successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "checkInsCount": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "checkInsCount"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "user": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "/^[a-zA-ZÀ-ú .,!?-_@']+$/g",
+            "description": "The user name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "uniqueItems": true,
+            "minLength": 5,
+            "maxLength": 255,
+            "pattern": "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/g",
+            "description": "The user email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "minLength": 8,
+            "maxLength": 128,
+            "pattern": "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\|,.<>\\/?]).+$/g",
+            "description": "The user password, will be encrypted"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "example": {
+          "name": "Livio Alvarenga",
+          "email": "livioalvarenga@mail.com",
+          "password": "Senha@!123"
+        }
+      },
+      "gym": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "latitude",
+          "longitude"
+        ],
+        "example": {
+          "id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+          "title": "Academia",
+          "description": "Academia de musculação",
+          "phone": "11999999999",
+          "latitude": -23.5505199,
+          "longitude": -46.6333094
+        }
+      },
+      "checkIn": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "gym_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "user_id",
+          "gym_id"
+        ]
+      },
+      "error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "error information"
+          }
+        }
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "Unauthorized.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "description": "Validation error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

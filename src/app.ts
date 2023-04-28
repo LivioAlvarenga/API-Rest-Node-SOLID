@@ -1,6 +1,9 @@
 import fastifyCookie from '@fastify/cookie'
 import fastifyJwt from '@fastify/jwt'
+import swagger from '@fastify/swagger'
+import swaggerUi from '@fastify/swagger-ui'
 import fastify from 'fastify'
+import path from 'node:path'
 import { ZodError } from 'zod'
 import { env } from './env'
 
@@ -10,6 +13,20 @@ import { usersRoutes } from './http/controllers/users/routes'
 
 export const app = fastify()
 
+app.register(swagger, {
+  mode: 'static',
+  specification: {
+    path: path.join(__dirname, 'docs', 'openapi.json'),
+    baseDir: path.join(__dirname, 'docs'),
+  },
+})
+
+app.register(swaggerUi, {
+  baseDir: path.join(__dirname, 'docs'),
+  routePrefix: '/docs',
+  staticCSP: true,
+})
+
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
   cookie: {
@@ -17,7 +34,7 @@ app.register(fastifyJwt, {
     signed: false, // <== This cookie will not be signed, because we will not read it in the backend
   },
   sign: {
-    expiresIn: '10m',
+    expiresIn: '10m', // <== Token expires in 10 minutes
   },
 })
 
@@ -28,6 +45,12 @@ app.register(gymsRoutes)
 app.register(checkInsRoutes)
 
 app.setErrorHandler((error, request, reply) => {
+  if (error.code === 'FST_JWT_NO_AUTHORIZATION_IN_COOKIE') {
+    return reply
+      .status(401)
+      .send({ message: 'Invalid JWT token.', code: error.code })
+  }
+
   if (error instanceof ZodError) {
     return reply
       .status(400)

@@ -14,6 +14,8 @@
 &nbsp;
 <a id="-sobre-o-projeto"></a>
 
+![OpenAPI Swagger](https://github.com/LivioAlvarenga/API-Rest-Node-SOLID/blob/master/files/openAPI-swagger.png?raw=true#vitrinedev)
+
 ## 💻 Sobre o projeto
 
 🚀 Nesse projeto será desenvolvido uma aplicação para check-ins em academias. Aqui vamos aplicar sobre alguns conceitos do SOLID, Design Patterns, Docker para iniciar o banco de dados, JWT e Refresh Token, RBAC e diversos outros conceitos.
@@ -30,7 +32,6 @@
 
 <p align="center">
   <a href= ""><img alt="deploy badge Render" height=40 src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/16529b41db0c4089f62eccbe301f46b3d8f157cf/files/render-badge.svg"></a>
-  <a href= ""><img alt="deploy badge Heroku" height=40 src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/a22a8e735aa74daab99216195cf07aa7d9e8096f/files/heroku-badge.svg"></a>
 <p>
 
 &nbsp;
@@ -160,6 +161,8 @@ npx tsc --init # Create tsconfig.json
 npm install fastify # Install Fastify
 npm install @fastify/jwt # Install @fastify/jwt to use JWT in Fastify
 npm install @fastify/cookie # Install @fastify/cookie to use cookie in Fastify
+npm install @fastify/swagger # Install @fastify/swagger to use Swagger in Fastify
+npm install @fastify/swagger-ui # Install @fastify/swagger-ui to use Swagger UI in Fastify
 ```
 
 _Create **`fastify-jwt.d.ts`** file in @types folder with all types of JWT in Fastify_
@@ -190,6 +193,8 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 })
 ```
+
+_Create **`openapi.json`** file to documentation open API 3.0.1, save src/docs_
 
 &nbsp;
 
@@ -484,18 +489,16 @@ npm run test:coverage # Executar os testes de integração com coverage
 npm run test:ui # Executar os testes de integração com ui
 ```
 
-### Testando requests com Insomnia
+### Testando API com openAPI (Swagger)
 
-```bash
-npm run dev # start server
-# Escolha a variável dev (vermelho) em Insomnia
+- Acesse http://localhost:3333/docs
+- Create User in POST /users
+- Authenticate User in POST /sessions
+_ Copy the token
+- Click on Authorize button
+- Paste the token in Value input
 
-# Para testar a API com deploy em produção use a variável prod (verde) em Insomnia
-```
-
-> Importar o arquivo `Insomnia.json` no Insomnia para testar as requests
-
-![Insomnia]()
+![OpenAPI Swagger](https://github.com/LivioAlvarenga/API-Rest-Node-SOLID/blob/master/files/openAPI-swagger.png?raw=true)
 
 &nbsp;
 
