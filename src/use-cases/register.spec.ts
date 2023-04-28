@@ -18,7 +18,7 @@ describe('Register Use Case', () => {
     const { user } = await sut.execute({
       name: 'John Doe',
       email: 'johndoe@gmail.com',
-      password: '123456',
+      password: 'Password123!',
     })
 
     expect(user.id).toEqual(expect.any(String))
@@ -28,10 +28,10 @@ describe('Register Use Case', () => {
     const { user } = await sut.execute({
       name: 'John Doe',
       email: 'johndoe@gmail.com',
-      password: '123456',
+      password: 'Password123!',
     })
 
-    const isPasswordHashed = await compare('123456', user.password_hash)
+    const isPasswordHashed = await compare('Password123!', user.password_hash)
 
     expect(isPasswordHashed).toBe(true)
   })
@@ -42,14 +42,14 @@ describe('Register Use Case', () => {
     await sut.execute({
       name: 'John Doe',
       email,
-      password: '123456',
+      password: 'Password123!',
     })
 
     await expect(() =>
       sut.execute({
         name: 'John Doe',
         email,
-        password: '123456',
+        password: 'Password123!',
       }),
     ).rejects.toBeInstanceOf(UserAlreadyExistsError)
   })

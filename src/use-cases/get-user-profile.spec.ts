@@ -19,7 +19,7 @@ describe('Get User Profile Use Case', () => {
     const createdUser = await UsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@gmail.com',
-      password_hash: await hash('123456', 6),
+      password_hash: await hash('Password123!', 6),
     })
 
     const { user } = await sut.execute({

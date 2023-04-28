@@ -19,12 +19,12 @@ describe('Authenticate Use Case', () => {
     await UsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@gmail.com',
-      password_hash: await hash('123456', 6),
+      password_hash: await hash('Password123!', 6),
     })
 
     const { user } = await sut.execute({
       email: 'johndoe@gmail.com',
-      password: '123456',
+      password: 'Password123!',
     })
 
     expect(user.id).toEqual(expect.any(String))
@@ -35,7 +35,7 @@ describe('Authenticate Use Case', () => {
     await expect(() =>
       sut.execute({
         email: 'johndoe@gmail.com',
-        password: '123456',
+        password: 'Password123!',
       }),
     ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
@@ -45,14 +45,14 @@ describe('Authenticate Use Case', () => {
     await UsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@gmail.com',
-      password_hash: await hash('123456', 6),
+      password_hash: await hash('Password123!', 6),
     })
 
     // I am using the wrong password here
     await expect(() =>
       sut.execute({
         email: 'johndoe@gmail.com',
-        password: '123123',
+        password: 'WrongPassword123!!',
       }),
     ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })

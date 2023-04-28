@@ -12,7 +12,7 @@ export async function createAndAuthenticateUser(
     data: {
       name: 'Antônio Silva',
       email: 'antonio@gmail.com',
-      password_hash: await hash('123456', 6),
+      password_hash: await hash('Password123!', 6),
       role: isAdmin ? 'ADMIN' : 'MEMBER',
     },
   })
@@ -20,7 +20,7 @@ export async function createAndAuthenticateUser(
   // Authenticate the user
   const authResponse = await request(app.server).post('/sessions').send({
     email: 'antonio@gmail.com',
-    password: '123456',
+    password: 'Password123!',
   })
 
   // Get the user profile
