@@ -2,7 +2,6 @@ import fastifyCookie from '@fastify/cookie'
 import fastifyJwt from '@fastify/jwt'
 import swagger from '@fastify/swagger'
 import swaggerUi from '@fastify/swagger-ui'
-import 'dotenv/config'
 import fastify from 'fastify'
 import path from 'node:path'
 import { ZodError } from 'zod'
@@ -16,7 +15,7 @@ export const app = fastify()
 
 // After building with tsup, the openapi.json copy to the build folder
 let pathOpenApi = path.join(__dirname, 'docs', 'openapi.json')
-if (process.env.NODE_ENV === 'production') {
+if (env.NODE_ENV === 'production') {
   pathOpenApi = path.join(__dirname, 'openapi.json')
 }
 

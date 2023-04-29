@@ -691,7 +691,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 255,
-            "pattern": "/^[a-zA-ZÀ-ú .,!?-_@']+$/g",
+            "pattern": "/^[a-zA-ZÀ-ú0-9\\s]+$/g",
             "description": "The user name"
           },
           "email": {

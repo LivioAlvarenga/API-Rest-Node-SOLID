@@ -8,7 +8,7 @@ export const registerBodySchema = z.object({
     .max(255)
     .trim()
     .toLowerCase()
-    .regex(/^[a-zA-ZÀ-ú .,!?-_@']+$/g, {
+    .regex(/^[a-zA-ZÀ-ú0-9\s]+$/g, {
       message:
         'Name must have only letters, spaces and some special characters',
     }),
