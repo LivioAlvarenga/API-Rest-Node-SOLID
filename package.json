@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "build": "tsup src --out-dir build",
-    "start": "node build/server.js",
+    "dev": "set NODE_ENV=dev&& tsx watch src/server.ts",
+    "build": "tsup src --out-dir build --publicDir src/docs",
+    "start": "set NODE_ENV=production&& node build/server.js",
     "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
     "test:install-prisma-environment": "npm link vitest-environment-prisma",
     "test": "vitest run --dir src/use-cases",
