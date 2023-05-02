@@ -8,14 +8,27 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
-        image: bitnami/postgresql
+      api-solid-mariadb:
+        image: bitnami/mariadb:latest
         ports:
-          - 5432:5432
+          - 3307:3306
         env:
-          POSTGRESQL_USERNAME: docker
-          POSTGRESQL_PASSWORD: docker
-          POSTGRESQL_DATABASE: apisolid
+          MARIADB_ROOT_USER: root
+          MARIADB_ROOT_PASSWORD: rootpassword
+          MARIADB_USER: mysql
+          MARIADB_PASSWORD: password
+          MARIADB_DATABASE: apisolid
+
+      api-solid-mariadb-shadow:
+        image: bitnami/mariadb:latest
+        ports:
+          - 3308:3306
+        env:
+          MARIADB_ROOT_USER: root
+          MARIADB_ROOT_PASSWORD: rootpassword
+          MARIADB_USER: mysql
+          MARIADB_PASSWORD: password
+          MARIADB_DATABASE: apisolidShadow
 
     steps:
       - uses: actions/checkout@v3
@@ -30,4 +43,5 @@ jobs:
       - run: npm run test:e2e
         env:
           JWT_SECRET: "secret"
-          DATABASE_URL: "postgresql://docker:docker@localhost:5432/apisolid?schema=public"
+          DATABASE_URL: "mysql://root:rootpassword@localhost:3307/apisolid"
+          SHADOW_DATABASE_URL: "mysql://root:rootpassword@localhost:3308/apisolidShadow"
