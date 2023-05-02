@@ -30,6 +30,10 @@ jobs:
           MARIADB_PASSWORD: password
           MARIADB_DATABASE: apisolidShadow
 
+    env:
+      MARIADB_CONTAINER_NAME: api-solid-mariadb
+      MARIADB_SHADOW_CONTAINER_NAME: api-solid-mariadb-shadow
+
     steps:
       - uses: actions/checkout@v3
 
@@ -39,6 +43,11 @@ jobs:
           cache: "npm"
 
       - run: npm ci
+
+      - name: Get MySQL container IP addresses
+        run: |
+          echo "MARIADB_HOST=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${{ env.MARIADB_CONTAINER_NAME }})" >> $GITHUB_ENV
+          echo "MARIADB_SHADOW_HOST=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${{ env.MARIADB_SHADOW_CONTAINER_NAME }})" >> $GITHUB_ENV
 
       - run: npm run test:e2e
         env:
