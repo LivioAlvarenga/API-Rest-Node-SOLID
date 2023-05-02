@@ -47,3 +47,5 @@ jobs:
           SHADOW_DATABASE_URL: "mysql://root:rootpassword@api-solid-mariadb-shadow:3306/apisolidShadow"
           MARIADB_ROOT_PASSWORD: "rootpassword"
           MARIADB_PASSWORD: "password"
+          MARIADB_HOST: "api-solid-mariadb"
+          SHADOW_MARIADB_HOST: "api-solid-mariadb-shadow"
