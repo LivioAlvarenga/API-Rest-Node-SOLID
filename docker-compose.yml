@@ -1,12 +1,26 @@
 version: "3"
 
 services:
-  api-solid-pg:
-    container_name: api-solid-pg
-    image: bitnami/postgresql
+  api-solid-mariadb:
+    container_name: api-solid-mariadb
+    image: bitnami/mariadb:latest
     ports:
-      - 5432:5432 # first is host port, second is container port
+      - 3307:3306 # first is host port, second is container port
     environment:
-      - POSTGRESQL_USERNAME=docker
-      - POSTGRESQL_PASSWORD=docker
-      - POSTGRESQL_DATABASE=apisolid
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_USER=mysql
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=apisolid
+
+  api-solid-mariadb-shadow:
+    container_name: api-solid-mariadb-shadow
+    image: bitnami/mariadb:latest
+    ports:
+      - 3308:3306 # first is host port, second is container port
+    environment:
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_USER=mysql
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=apisolidShadow

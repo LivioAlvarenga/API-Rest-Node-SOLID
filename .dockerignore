@@ -1,4 +1,7 @@
-node_modules
-files
 .git
+.github
 .vscode
+coverange
+files
+node_modules
+build

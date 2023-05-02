@@ -7,8 +7,9 @@ generator erd {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 enum Role {
@@ -21,7 +22,7 @@ model User {
   name          String
   email         String   @unique
   password_hash String
-  role          Role    @default(MEMBER)
+  role          Role     @default(MEMBER)
   created_at    DateTime @default(now())
 
   checkIns CheckIn[]
