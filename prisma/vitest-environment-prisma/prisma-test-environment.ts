@@ -36,18 +36,10 @@ export default <Environment>{
     process.env.SHADOW_DATABASE_URL = shadowDatabaseURL // set the shadow database url
 
     execSync(
-      `mysql -h ${
-        process.env.MARIADB_HOST || 'localhost'
-      } -P 3307 -u root --password="${
-        process.env.MARIADB_ROOT_PASSWORD
-      }" -e "CREATE DATABASE ${database}"`,
+      `mysql -h localhost -P 3307 -u root --password="${process.env.MARIADB_ROOT_PASSWORD}" -e "CREATE DATABASE ${database}"`,
     ) // create the test database in fake MySQL
     execSync(
-      `mysql -h ${
-        process.env.SHADOW_MARIADB_HOST || 'localhost'
-      } -P 3308 -u root --password="${
-        process.env.MARIADB_ROOT_PASSWORD
-      }" -e "CREATE DATABASE ${shadowDatabase}"`,
+      `mysql -h localhost -P 3308 -u root --password="${process.env.MARIADB_ROOT_PASSWORD}" -e "CREATE DATABASE ${shadowDatabase}"`,
     ) // create the shadow database in fake MySQL
 
     execSync('npx prisma migrate deploy') // apply the migrations to the new test database
