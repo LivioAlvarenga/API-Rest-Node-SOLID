@@ -43,9 +43,5 @@ jobs:
       - run: npm run test:e2e
         env:
           JWT_SECRET: "secret"
-          DATABASE_URL: "mysql://root:rootpassword@172.17.0.2:3306/apisolid"
-          SHADOW_DATABASE_URL: "mysql://root:rootpassword@172.17.0.3:3306/apisolidShadow"
-          MARIADB_ROOT_PASSWORD: "rootpassword"
-          MARIADB_PASSWORD: "password"
-          MARIADB_HOST: "localhost"
-          GITHUB_ACTIONS: "true"
+          DATABASE_URL: "mysql://root:rootpassword@localhost:3307/apisolid"
+          SHADOW_DATABASE_URL: "mysql://root:rootpassword@localhost:3308/apisolidShadow"
