@@ -33,15 +33,7 @@ export default <Environment>{
     )
 
     process.env.DATABASE_URL = databaseURL // set the test database url
-    console.log(
-      '🚀 ~ file: prisma-test-environment.ts:36 ~ setup ~ databaseURL:',
-      databaseURL,
-    )
     process.env.SHADOW_DATABASE_URL = shadowDatabaseURL // set the shadow database url
-    console.log(
-      '🚀 ~ file: prisma-test-environment.ts:38 ~ setup ~ shadowDatabaseURL:',
-      shadowDatabaseURL,
-    )
 
     execSync('npx prisma migrate deploy') // apply the migrations to the new test database
 
