@@ -11,7 +11,7 @@
     "build": "tsup src --out-dir build --minify --publicDir src/docs",
     "postbuild": "node build/remove-spec-files.js",
     "build:prod": "tsup src --out-dir build --minify --publicDir src/docs",
-    "build:prod:remove-spec-files": "node remove-spec-files.js",
+    "postbuild:prod:remove-spec-files": "node remove-spec-files.js",
     "start": "set NODE_ENV=production&& node build/server.js",
     "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
     "test:install-prisma-environment": "npm link vitest-environment-prisma",
