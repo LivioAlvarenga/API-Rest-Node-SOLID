@@ -87,7 +87,7 @@ As seguintes ferramentas foram usadas na construção do projeto
   <a href= "https://swagger.io/"><img alt="swagger badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/e8e5c3d2752ae17cbffa11142d8513fe1f405873/files/swagger-badge.svg"></a>
   <a href= "https://jwt.io/"><img alt="JSON Web Tokens Badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/af3b694b2d536d66113468df616d3f165d881eb7/files/jwt-badge.svg"></a>
   <a href= "https://code.visualstudio.com/download" target="_blank" rel="noopener noreferrer"><img alt="vscode download" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/vsCode-badge.svg"></a>
-  <a href= "https://github.com/LivioAlvarenga/API-Rest-Node-SOLID/actions"><img alt="badge github actions" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=2088ff&logo=githubactions&label=Workflow Automation&message=GitHub Actions&color=2088ff"></a>
+  <a href= "https://github.com/LivioAlvarenga/API-Rest-Node-SOLID/actions"><img alt="badge github actions" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/7f97047760406ed30c106dcf1114a674914da66b/files/github-actions-badge.svg"></a>
   <a href= "https://github.com/prettier/prettier" target="_blank" rel="noopener noreferrer"><img alt="code formatter prettier" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/prettier-badge.svg"></a>
   <a href= "https://eslint.org/" target="_blank" rel="noopener noreferrer"><img alt="code standardization eslint" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/59575ed19b13121cd113cfc66a71f18dea210c79/files/eslint-badge.svg"></a>
 </p>
