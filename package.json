@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "set NODE_ENV=dev&& tsx watch src/server.ts",
-    "build": "tsup src !src/**/*.spec.ts --out-dir build --minify --publicDir src/docs",
+    "build": "tsup src !src/**/*.spec.ts !src/**/test/**/* --out-dir build --minify --publicDir src/docs",
     "start": "set NODE_ENV=production&& node build/server.js",
     "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
     "test:install-prisma-environment": "npm link vitest-environment-prisma",
