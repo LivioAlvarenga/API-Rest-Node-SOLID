@@ -21,6 +21,10 @@
   },
   "servers": [
     {
+      "url": "https://api-rest-node-solid.onrender.com/",
+      "description": "Production server"
+    },
+    {
       "url": "http://localhost:3333",
       "description": "Developer server"
     }
