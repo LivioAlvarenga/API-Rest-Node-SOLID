@@ -7,6 +7,7 @@
  <a href="#-tecnologias">Tecnologias</a> •
  <a href="#-instalação">Instalações</a> •
  <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-deploy">Deploy</a> •
  <a href="#-autor">Autor</a> • 
  <a href="#-licença">Licença</a>
 </p>
@@ -18,7 +19,17 @@
 
 ## 💻 Sobre o projeto
 
-🚀 Nesse projeto será desenvolvido uma aplicação para check-ins em academias. Aqui vamos aplicar sobre alguns conceitos do SOLID, Design Patterns, Docker para iniciar o banco de dados, JWT e Refresh Token, RBAC e diversos outros conceitos.
+🚀 Neste projeto, será desenvolvido uma aplicação para check-ins em academias, aplicando conceitos do SOLID, Design Patterns, Docker para iniciar o banco de dados, JWT e Refresh Token, RBAC e diversos outros conceitos. O objetivo é fornecer um template completo e bem estruturado para o desenvolvimento de APIs RESTful com Node.js, Docker e Prisma, proporcionando uma base sólida para criar aplicações web escaláveis e de alta qualidade.
+
+A primeira parte do projeto inclui a configuração de variáveis de ambiente para bancos de dados MySQL, utilizando o arquivo .env e o Prisma como ORM. As variáveis de ambiente são usadas para armazenar informações confidenciais, como credenciais de banco de dados, e para configurar o projeto de acordo com o ambiente de desenvolvimento ou produção.
+
+Na segunda parte, é apresentada a arquitetura do projeto, utilizando a biblioteca Vitest para testes e cobertura de testes. Isso inclui a instalação de várias dependências, a criação de arquivos de configuração e a adição de scripts no package.json para executar testes e outras tarefas relacionadas.
+
+A aplicação possui testes unitários de integração e testes e2e e uma cobertura de testes de 100%. Além disso, utilizamos o GitHub Actions para executar os testes unitários de integração e e2e e verificar a cobertura de testes a cada push na branch main.
+
+Por fim, são apresentadas algumas funcionalidades adicionais e bibliotecas utilizadas no projeto, como bcryptjs para criptografia de senhas e dayjs para manipulação de datas. Além disso, o projeto inclui uma lista detalhada de requisitos funcionais e não funcionais, bem como regras de negócio que orientam o desenvolvimento das funcionalidades da aplicação.
+
+Dessa forma, este projeto oferece um ponto de partida sólido para o desenvolvimento de aplicações web, incluindo configurações e ferramentas para garantir a qualidade do código e a manutenção do projeto ao longo do tempo.
 
 &nbsp;
 
@@ -31,8 +42,8 @@
 <p>
 
 <p align="center">
-  <a href= ""><img alt="deploy badge Render" height=40 src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/16529b41db0c4089f62eccbe301f46b3d8f157cf/files/render-badge.svg"></a>
-  <a href= "https://swagger.io/"><img alt="swagger badge" height=40 src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/e8e5c3d2752ae17cbffa11142d8513fe1f405873/files/swagger-badge.svg"></a>
+  <a href= "https://api-rest-node-solid.onrender.com/docs"><img alt="deploy badge Render" height=40 src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/16529b41db0c4089f62eccbe301f46b3d8f157cf/files/render-badge.svg"></a>
+  <a href= "https://api-rest-node-solid.onrender.com/docs"><img alt="swagger badge" height=40 src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/e8e5c3d2752ae17cbffa11142d8513fe1f405873/files/swagger-badge.svg"></a>
 <p>
 
 &nbsp;
@@ -47,7 +58,7 @@
 | :placard: Vitrine.Dev |                                                                                                                  |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | :sparkles: Nome       | **API Rest NodeJs com SOLID**                                                                |
-| :label: Tecnologias   | NodeJs, TypeScript, JavaScript, .ENV, Fastify, PrismaJs, Zod, Database(MySql, PostgreSQL), Docker, Vitest, EsLint, Insomnia e JSON Web Token. |                                                                 |
+| :label: Tecnologias   | NodeJs, TypeScript, JavaScript, .ENV, Fastify, PrismaJs, Zod, MySql, Docker, Vitest, GitHub Actions, Swagger, EsLint, Insomnia e JSON Web Token. |                                                                 |
 
 ---
 
@@ -76,6 +87,7 @@ As seguintes ferramentas foram usadas na construção do projeto
   <a href= "https://swagger.io/"><img alt="swagger badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/e8e5c3d2752ae17cbffa11142d8513fe1f405873/files/swagger-badge.svg"></a>
   <a href= "https://jwt.io/"><img alt="JSON Web Tokens Badge" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/af3b694b2d536d66113468df616d3f165d881eb7/files/jwt-badge.svg"></a>
   <a href= "https://code.visualstudio.com/download" target="_blank" rel="noopener noreferrer"><img alt="vscode download" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/vsCode-badge.svg"></a>
+  <a href= "https://github.com/LivioAlvarenga/API-Rest-Node-SOLID/actions"><img alt="badge github actions" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=2088ff&logo=githubactions&label=Workflow Automation&message=GitHub Actions&color=2088ff"></a>
   <a href= "https://github.com/prettier/prettier" target="_blank" rel="noopener noreferrer"><img alt="code formatter prettier" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/2467074c4c912dd04b12bcee1076cb5ca7ba9eaf/files/prettier-badge.svg"></a>
   <a href= "https://eslint.org/" target="_blank" rel="noopener noreferrer"><img alt="code standardization eslint" src="https://raw.githubusercontent.com/LivioAlvarenga/LivioAlvarenga/59575ed19b13121cd113cfc66a71f18dea210c79/files/eslint-badge.svg"></a>
 </p>
@@ -99,9 +111,9 @@ npm init -y
 ```json
 // Create scripts in package.json
 "scripts": {
-  "dev": "tsx watch src/server.ts", // Create script to run server in development mode
-  "build": "tsup src --out-dir build", // Create script to build server in production mode
-  "start": "node build/server.js" // Create script to run server in production mode
+  "dev": "set NODE_ENV=dev&& tsx watch src/server.ts", // Create script to run server in development mode
+  "build": "tsup src !src/**/*.spec.ts !src/**/test/**/* --out-dir build --minify --publicDir src/docs", // Create script to build server in production mode
+  "start": "set NODE_ENV=production&& node build/server.js", // Create script to run server in production mode
 },
 ```
 
@@ -248,8 +260,8 @@ docker-compose down # Stop and remove o docker-compose, obs remove all data in d
 ### **PrismaJs** database architecture
 
 ```bash
-npm install -D prisma # Install Prisma
-npm i -D prisma-erd-generator @mermaid-js/mermaid-cli # Install Prisma ERD generator
+npm install prisma # Install Prisma
+npm i prisma-erd-generator @mermaid-js/mermaid-cli # Install Prisma ERD generator
 npm i @prisma/client # Install Prisma client
 
 npx prisma init # Create prisma folder with prisma.schema and prisma folder
@@ -277,24 +289,7 @@ generator erd {
 },
 ```
 
-**`Environment variables to databases (postgres, mysql)`**
-
-&nbsp;
-
-_Create **`DATABASE_URL`** in .env and .env.example file with **`Postgres`**_
-
-```.env
-DATABASE_URL="postgresql://docker:docker@localhost:5432/apisolid?schema=public"
-```
-> I used postgresql for development, but you can use mysql, mariadb, sqlite, sqlserver, mongodb, etc.
-
-```typescript
-// Add datasource in prisma.schema to postgres database
-datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
-}
-```
+**`Environment variables to databases mysql`**
 
 &nbsp;
 
@@ -306,7 +301,7 @@ DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
 SHADOW_DATABASE_URL="mysql://OTHER_USER:PASSWORD@HOST:PORT/OTHER_DATABASE_NAME"
 ```
 
-> I used mysql for production, but you can use postgresql, mariadb, sqlite, sqlserver, mongodb, etc.
+> I used mysql, but you can use postgresql, mariadb, sqlite, sqlserver, mongodb, etc.
 
 ```typescript
 // Add datasource in prisma.schema to mysql database
@@ -482,12 +477,18 @@ npm run generate # Gerar diagrama do banco de dados
 
 ### 🧭 Testes
 
+A aplicação possui testes unitários de integração e testes e2e e uma cobertura de testes de 100%. Para executar os testes, execute os comandos abaixo:
+
 ```bash
-npm run test # Executar os testes de integração
-npm run test:watch # Executar os testes de integração com watch
-npm run test:coverage # Executar os testes de integração com coverage
-npm run test:ui # Executar os testes de integração com ui
+npm run test # Executar os testes unitários de integração
+npm run test:watch # Executar os testes unitários de integração com watch
+npm run test:e2e # Executar os testes e2e
+npm run test:e2e:watch # Executar os testes e2e com watch
+npm run test:coverage # Verificar a cobertura de testes
+npm run test:ui # Executar os testes de integração com Vitest ui
 ```
+
+Além disso, utilizamos o GitHub Actions para executar os testes unitários de integração e e2e e verificar a cobertura de testes a cada push na branch main.
 
 ### Testando API com openAPI (Swagger)
 
@@ -501,6 +502,32 @@ _ Copy the token
 ![OpenAPI Swagger](https://github.com/LivioAlvarenga/API-Rest-Node-SOLID/blob/master/files/openAPI-swagger.png?raw=true)
 
 &nbsp;
+
+---
+
+&nbsp;
+<a id="-deploy"></a>
+
+## 🚀 Deploy
+
+O deploy foi realizado na plataforma Render.com. Para acessar a rota de documentação (docs) da API, clique no link abaixo:
+
+[API-Rest-Node-SOLID](https://api-rest-node-solid.onrender.com/docs)
+
+As variáveis de ambiente configuradas incluem:
+
+- DATABASE_URL
+- SHADOW_DATABASE_URL
+- JWT_SECRET
+- NODE_ENV
+
+O comando para construção (Build command) foi configurado da seguinte forma:
+
+```bash
+npm install && npx prisma migrate deploy && npx prisma generate && npm run build
+```
+
+O banco de dados utilizado foi o MySQL MariaDB. Foi necessário criar um banco de dados sombra (Shadow), pois o serviço utilizado para criar o banco de dados não permite a criação de um banco de dados para testes. O Prisma utiliza um banco de dados sombra para realizar seus processos de migrações (migrations) e testes.
 
 ---
 
